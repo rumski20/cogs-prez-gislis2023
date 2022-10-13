@@ -1,0 +1,25 @@
+/* custom styles */
+
+.subtitle {
+  font-size: 45%;
+  color: #c2c2c2;
+}
+li {
+  margin: 20px 0;
+}
+.top-title {
+  top: 40px;
+  position: absolute;
+  font-size: 60px;
+}
+/* iframe {
+  display: block;
+  width: 100vh;
+  border: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: 0px;
+  padding: 0px;
+  height: 100vh;
+  border: none;
+} */

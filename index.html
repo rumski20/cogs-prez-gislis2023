@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <title>Big</title>
+    <link href="big.css" rel="stylesheet" type="text/css" />
+    <link href="dark.css" rel="stylesheet" type="text/css" />
+    <link href="custom.css" rel="stylesheet" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="//unpkg.com/@highlightjs/cdn-assets@11.6.0/styles/default.min.css"
+    />
+    <script src="//unpkg.com/@highlightjs/cdn-assets@11.6.0/highlight.min.js"></script>
+    <script src="big.js"></script>
+    <script>
+      hljs.highlightAll();
+    </script>
+    <style>
+      .hljs {
+        overflow-x: initial;
+      }
+    </style>
+  </head>
+  <body class="dark">
+    <!-- slide 1   -->
+    <div class="layout" style="grid-template-rows: 75% 25%">
+      <div>GeoTIFFs in the browser</div>
+      <div class="subtitle">Kris Johnson, NRRI/UMD - GIS/LIS 2022</div>
+      <notes>Speakers notes go here.</notes>
+    </div>
+    <!-- slide 2 -->
+    <div>
+      <div>
+        Outline:
+        <ul>
+          <li>What is <em>geotiff.js</em>?</li>
+          <li>Why use it?</li>
+          <li>How to use it?</li>
+          <li>Examples</li>
+          <li>My use case</li>
+        </ul>
+      </div>
+      <notes>Speakers notes go here.</notes>
+    </div>
+    <!-- slide 3 -->
+    <div>
+      <div>
+        <a href="https://geotiffjs.github.io/">geotiff.js</a>
+        parse TIFF files for visualization or analysis, written in JavaScript
+      </div>
+      <notes>Speakers notes go here.</notes>
+    </div>
+    <!-- slide 4 -->
+    <div>
+      <div>
+        Support for the GeoTIFF capabilities we expect from a desktop GIS:
+        <ul>
+          <li>various image compression methods</li>
+          <li>geographical information</li>
+          <li>internal tiling</li>
+          <li>pixel or band interleaving</li>
+          <li>automatic transformation from several color spaces to RGB</li>
+        </ul>
+      </div>
+      <notes>Speakers notes go here.</notes>
+    </div>
+    <!-- slide 5 -->
+    <div class="layout" style="grid-template-rows: 10% 90%">
+      <div>From this</div>
+      <img src="images/tif-code.png" />
+      <notes>Speakers notes go here.</notes>
+    </div>
+    <!-- slide 6 -->
+    <div class="layout" style="grid-template-rows: 10% 90%">
+      <div>To this</div>
+      <!-- <iframe
+        title="geotiff.js example"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        width="600"
+        height="500"
+        scrolling="none"
+        src="https://geotiff.github.io/georaster-layer-for-leaflet-example/"
+      >
+    </iframe> -->
+      <img src="images/geotiff-example.png" />
+
+      <notes>Speakers notes go here.</notes>
+    </div>
+    <!-- slide 7 -->
+    <div style="background-color: white">
+      <img src="https://www.cogeo.org/images/logo/Cog-02.png" />
+      <notes>Who's heard of COGs? Used them?</notes>
+    </div>
+    <!-- slide 8 -->
+    <div>
+      <div>
+        A <a href="https://www.cogeo.org/">Cloud Optmized GeoTIFF</a> is a
+        regular GeoTIFF file, hosted on a HTTP file server, with an internal
+        organization that allows clients issuing ​HTTP GET range requests to ask
+        for just the parts of a file they need.
+      </div>
+      <notes>Speakers notes go here.</notes>
+    </div>
+    <!-- slide 9 -->
+    <div>
+      <div>
+        <p>How?</p>
+        <p>
+          From the
+          <a href="https://www.cogeo.org/providers-guide.html"
+            >provider's guide</a
+          >:
+        </p>
+      </div>
+      <notes>Speakers notes go here.</notes>
+    </div>
+    <!-- slide 10 -->
+    <div class="layout" style="grid-template-rows: 25% 75%">
+      <div>
+        A web server (eg. Amazon S3, Google Cloud Storage) capable of HTTP range
+        requests
+      </div>
+      <img src="images/range-requests.png" />
+      <notes>Speakers notes go here.</notes>
+    </div>
+    <!-- slide 11 -->
+    <div>
+      <div>
+        <a
+          href="https://github.com/GeoTIFF/georaster-layer-for-leaflet/blob/master/FAQs.md#how-do-i-convert-my-geotiff-into-a-cloud-optimized-geotiff"
+          >Convert regular GeoTIFF to COG</a
+        >
+      </div>
+      <pre><code class="language-shell">
+        gdal_translate example.tif cog.tif -co TILED=YES -co COMPRESS=DEFLATE
+      </code></pre>
+      <br />
+      <pre><code class="language-shell">
+        gdaladdo -r average cog.tif 2 4 8 16 32 
+    </code></pre>
+      <notes>internal tiling, external overviews</notes>
+    </div>
+    <!-- slide 12 -->
+    <div>
+      <div>Why all the fuss?</div>
+      <notes></notes>
+    </div>
+    <!-- slide 13 -->
+    <div>
+      <div>
+        Server-side (the traditional approach)
+        <ul>
+          <li>WMS (for rendering)</li>
+          <li>WCS (for analyzing)</li>
+        </ul>
+      </div>
+      <notes>Site license; I'll talk about later</notes>
+    </div>
+    <!-- slide 14 -->
+    <div>
+      Client-side (raster rendering and analysis in your browser)
+      <ul>
+        <li>parse multiple formats (remote, local, via ArrayBuffer)</li>
+        <li>compression</li>
+        <li>resampling</li>
+        <li>bounding box</li>
+      </ul>
+      <notes>Speakers notes go here.</notes>
+    </div>
+    <!-- slide 15 -->
+    <div>
+      <div>Essentially, the raster equivalent of GeoJSON 🤯</div>
+      <notes>Speakers notes go here.</notes>
+    </div>
+
+    <!-- slide 15 -->
+    <div>
+      <div>Or, server-less raster analysis 💥</div>
+      <notes>Speakers notes go here.</notes>
+    </div>
+    <!-- slide 16 -->
+    <div>
+      <div>Complimentary Technologies</div>
+
+      <div class="subtitle" style="font-style: italic">
+        I'm not an expert so I need to rely on these
+      </div>
+      <notes>Speakers notes go here.</notes>
+    </div>
+    <!-- slide 17 -->
+    <div>
+      <a href="https://github.com/GeoTIFF/georaster">Georaster</a> - simplifies
+      the JavaScript interface to geotiff.js
+      <notes>Speakers notes go here.</notes>
+    </div>
+    <!-- slide 18 -->
+    <div>
+      <a href="https://github.com/GeoTIFF/georaster-layer-for-leaflet"
+        >Georaster Layer for Leaflet</a
+      >
+      - Leaflet plugin for georasters
+      <notes>Speakers notes go here.</notes>
+    </div>
+
+    <!-- slide 18 -->
+    <div>
+      <div>How to use it?</div>
+      <div class="subtitle">
+        ref:
+        <a
+          href="https://github.com/GeoTIFF/georaster-layer-for-leaflet#usage-example"
+          >https://github.com/GeoTIFF/georaster-layer-for-leaflet#usage-example</a
+        >
+      </div>
+      <notes>Speakers notes go here.</notes>
+    </div>
+
+    <!-- slide 20 -->
+    <div>
+      <div>load GeoTIFF</div>
+      <pre><code class="language-javascript">      fetch(url_to_geotiff_file)
+        .then((response) => {
+            response.arrayBuffer())</code></pre>
+      <notes>Speakers notes go here.</notes>
+    </div>
+
+    <!-- slide 20 -->
+    <div>
+      <div>parse ArrayBuffer to Georaster</div>
+      <pre><code class="language-javascript">     .then((arrayBuffer) => {
+        parseGeoraster(arrayBuffer)
+        .then((georaster) => {</code></pre>
+      <notes
+        >The ArrayBuffer object is used to represent a generic, fixed-length raw
+        binary data buffer. It is an array of bytes, often referred to in other
+        languages as a "byte array". You cannot directly manipulate the contents
+        of an ArrayBuffer; instead, you create one of the typed array objects or
+        a DataView object which represents the buffer in a specific format, and
+        use that to read and write the contents of the buffer.</notes
+      >
+    </div>
+
+    <!-- slide 20 -->
+    <div>
+      <div>create Leaflet layer from Georaster</div>
+      <pre><code class="language-javascript">var layer = new GeoRasterLayer({
+        georaster: georaster,
+        opacity: 0.7,
+        debugLevel: 10,
+      });
+      layer.addTo(map);{</code></pre>
+      <notes>Speakers notes go here.</notes>
+    </div>
+
+    <!-- slide 20 -->
+    <div>
+      Examples
+      <notes>Speakers notes go here.</notes>
+    </div>
+    <!-- slide 21 -->
+    <div>
+      <div>
+        <a target="_blank" href="https://landsatlook.usgs.gov/explore"
+          >LandsatLook</a
+        >
+        - a tool that allows rapid online viewing and access to the USGS Landsat
+        Collection 2 data
+      </div>
+      <notes
+        >LandsatLook is a tool that allows rapid online viewing and access to
+        the USGS Landsat Collection 2 data. LandsatLook leverages resources
+        available via a commercial cloud environment including Cloud Optimized
+        GeoTIFF (COG) and Spatio Temporal Asset Catalog (STAC) metadata.
+      </notes>
+    </div>
+
+    <!-- slide 22 -->
+    <div>
+      <div>
+        <a target="_blank" href="https://app.geotiff.io/">GeoTIFF.io</a> - add
+        your own GeoTIFF and play around
+      </div>
+      <notes>add your own GeoTIFF and play around</notes>
+    </div>
+
+    <!-- slide 21 -->
+    <div>
+      <div>
+        <a target="_blank" href="examples\basic.html">Basic example</a> - load
+        GeoTIFF from file
+      </div>
+      <notes>add your own GeoTIFF and play around</notes>
+    </div>
+
+    <!-- slide 21 -->
+    <div>
+      <div class="top-title">
+        <a
+          target="_blank"
+          href="https://geotiff.github.io/georaster-layer-for-leaflet-example/examples/color-scale.html"
+          >Color scale example</a
+        >
+      </div>
+      <pre><code>
+        pixelValuesToColorFn: function(pixelValues) {
+            var pixelValue = pixelValues[0]; // there's just one band in this raster
+
+            if (pixelValue === 0) return null;
+
+            // scale to 0 - 1 used by chroma
+            var scaledPixelValue = (pixelValue - min) / range;
+
+            var color = scale(scaledPixelValue).hex();
+
+            return color;
+          },
+      </code></pre>
+      <notes></notes>
+    </div>
+
+    <!-- slide 21 -->
+    <div>
+      <div class="top-title">
+        <a
+          target="_blank"
+          href="https://geotiff.github.io/georaster-layer-for-leaflet-example/examples/ycbcr.html"
+          >YCbCr Photometric Interpretation example</a
+        >
+      </div>
+      <pre><code>
+        pixelValuesToColorFn: values => {
+            const r = Math.round(values[0] + 1.40200 * (values[2] - 0x80));
+            const g = Math.round(values[0] - 0.34414 * (values[1] - 0x80) - 0.71414 * (values[2] - 0x80));
+            const b = Math.round(values[0] + 1.77200 * (values[1] - 0x80));
+            return `rgb(${r},${g},${b})`;
+          }
+      </code></pre>
+      <notes></notes>
+    </div>
+
+    <!-- slide 21 -->
+    <div>
+      <div class="top-title">
+        <a
+          target="_blank"
+          href="https://geotiff.github.io/georaster-layer-for-leaflet-example/examples/wind-direction-arrows.html"
+          >Custom draw function (wind arrows)</a
+        >
+      </div>
+      <pre><code>
+        customDrawFunction: function({ context, x, y, width, height, values }) {
+            var value = values[0];
+            var arrowSize = width / 2.5;
+            context.save();
+            context.translate(x, y);
+            context.rotate((90+value)*Math.PI/180);
+            context.beginPath();
+            context.moveTo(-arrowSize/2, 0);
+            context.lineTo(+arrowSize/2, 0);
+            context.moveTo(arrowSize*0.25, -arrowSize*0.25);
+            context.lineTo(+arrowSize/2, 0);
+            context.lineTo(arrowSize*0.25, arrowSize*0.25);
+            context.stroke();
+            context.restore();
+          }
+      </code></pre>
+      <notes></notes>
+    </div>
+
+    <!-- slide 21 -->
+    <div>
+      <div class="top-title">
+        <a
+          target="_blank"
+          href="https://geotiff.github.io/georaster-layer-for-leaflet-example/examples/load-cog-via-script-tag.html"
+          >Re-projection</a
+        >
+      </div>
+      <div>GeoTIFF is using EPSG:32615 (WGS 84 / UTM zone 15N)</div>
+      <notes></notes>
+    </div>
+
+    <!-- slide 21 -->
+    <div>
+      <div>
+        <a target="_blank" href="examples\cog.html">COG example</a> - load Cloud
+        Optimized GeoTIFF from AWS bucket
+      </div>
+      <notes>add your own GeoTIFF and play around</notes>
+    </div>
+
+    <!-- slide 21 -->
+    <div>
+      <div>
+        <a target="_blank" href="examples\cog.html">COG example</a> - load Cloud
+        Optimized GeoTIFF from AWS bucket
+      </div>
+      <notes>add your own GeoTIFF and play around</notes>
+    </div>
+
+    <!-- slide 21 -->
+    <div>
+      <div>
+        Cuts that didn't make into this presentation:
+
+        <a
+          target="_blank"
+          href="https://observablehq.com/@geosurge/geoblaze-cloud-optimized-raster-analysis"
+          >raster analysis</a
+        >
+        using <a href="https://geoblaze.io/">GeoBlaze</a>
+      </div>
+      <notes>add your own GeoTIFF and play around</notes>
+    </div>
+
+    <!-- slide 21 -->
+    <div class="layout" style="grid-template-rows: 15% 125%">
+      <div>
+        My use case:&nbsp;
+        <a target="_blank" href="https://mnforcast.org/">mnforcast.org</a>
+      </div>
+      <img src="images/forcast.png" />
+      <notes></notes>
+    </div>
+
+    <!-- slide 21 -->
+    <div>
+      <div>
+        Use this approach when:
+        <ul>
+          <li>You don't have access to a server</li>
+          <li>You don't want to mess with a server</li>
+          <li>
+            You want to speed up imagery/raster load times (by using
+            <em>COG</em>s)
+          </li>
+          <li>You want to imagery/raster analysis in JavaScript</li>
+        </ul>
+      </div>
+      <notes>Summary</notes>
+    </div>
+
+    <!-- last slide -->
+    <div>
+      <div>Thank you!</div>
+      <div class="subtitle">Kris Johnson, NRRI/UMD - kristofj@d.umn.edu</div>
+    </div>
+  </body>
+</html>
