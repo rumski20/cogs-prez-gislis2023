@@ -32,6 +32,12 @@
       <div class="subtitle">Kris Johnson, NRRI/UMD - GIS/LIS 2022</div>
       <notes>Speakers notes go here.</notes>
     </div>
+
+    <div>
+      <div>
+        <a href="https://tinyurl.com/geo-tiff">https://tinyurl.com/geo-tiff</a>
+      </div>
+    </div>
     <!-- slide 2 -->
     <div>
       <div>
@@ -50,7 +56,7 @@
     <div>
       <div>
         <a href="https://geotiffjs.github.io/">geotiff.js</a>
-        parse TIFF files for visualization or analysis, written in JavaScript
+        parses TIFF files for visualization or analysis, written in JavaScript
       </div>
       <notes>Speakers notes go here.</notes>
     </div>
@@ -61,6 +67,10 @@
         <ul>
           <li>various image compression methods</li>
           <li>geographical information</li>
+          <ul>
+            <li>location</li>
+            <li>pixel values</li>
+          </ul>
           <li>internal tiling</li>
           <li>pixel or band interleaving</li>
           <li>automatic transformation from several color spaces to RGB</li>
@@ -100,10 +110,14 @@
     <!-- slide 8 -->
     <div>
       <div>
-        A <a href="https://www.cogeo.org/">Cloud Optmized GeoTIFF</a> is a
-        regular GeoTIFF file, hosted on a HTTP file server, with an internal
-        organization that allows clients issuing ​HTTP GET range requests to ask
-        for just the parts of a file they need.
+        A
+        <a target="_blank" href="https://www.cogeo.org/"
+          >Cloud Optmized GeoTIFF</a
+        >
+        is <em>a regular GeoTIFF file</em>, hosted on a HTTP file server, with
+        an internal organization that allows clients issuing ​HTTP
+        <em>GET range requests</em> to ask for just the parts of a file they
+        need.
       </div>
       <notes>Speakers notes go here.</notes>
     </div>
@@ -113,7 +127,7 @@
         <p>How?</p>
         <p>
           From the
-          <a href="https://www.cogeo.org/providers-guide.html"
+          <a target="_blank" href="https://www.cogeo.org/providers-guide.html"
             >provider's guide</a
           >:
         </p>
@@ -133,6 +147,7 @@
     <div>
       <div>
         <a
+          target="_blank"
           href="https://github.com/GeoTIFF/georaster-layer-for-leaflet/blob/master/FAQs.md#how-do-i-convert-my-geotiff-into-a-cloud-optimized-geotiff"
           >Convert regular GeoTIFF to COG</a
         >
@@ -181,7 +196,8 @@
 
     <!-- slide 15 -->
     <div>
-      <div>Or, server-less raster analysis 💥</div>
+      <div class="subtitle">-- OR --</div>
+      <div><em>server-less</em> raster analysis 💥</div>
       <notes>Speakers notes go here.</notes>
     </div>
     <!-- slide 16 -->
@@ -195,13 +211,17 @@
     </div>
     <!-- slide 17 -->
     <div>
-      <a href="https://github.com/GeoTIFF/georaster">Georaster</a> - simplifies
-      the JavaScript interface to geotiff.js
+      <a target="_blank" href="https://github.com/GeoTIFF/georaster"
+        >Georaster</a
+      >
+      - simplifies the JavaScript interface to geotiff.js
       <notes>Speakers notes go here.</notes>
     </div>
     <!-- slide 18 -->
     <div>
-      <a href="https://github.com/GeoTIFF/georaster-layer-for-leaflet"
+      <a
+        target="_blank"
+        href="https://github.com/GeoTIFF/georaster-layer-for-leaflet"
         >Georaster Layer for Leaflet</a
       >
       - Leaflet plugin for georasters
@@ -214,6 +234,7 @@
       <div class="subtitle">
         ref:
         <a
+          target="_blank"
           href="https://github.com/GeoTIFF/georaster-layer-for-leaflet#usage-example"
           >https://github.com/GeoTIFF/georaster-layer-for-leaflet#usage-example</a
         >
@@ -252,10 +273,9 @@
       <pre><code class="language-javascript">var layer = new GeoRasterLayer({
         georaster: georaster,
         opacity: 0.7,
-        debugLevel: 10,
       });
       layer.addTo(map);{</code></pre>
-      <notes>Speakers notes go here.</notes>
+      <notes>This extends L.gridLayer so all the same options apply</notes>
     </div>
 
     <!-- slide 20 -->
@@ -389,18 +409,21 @@
     <!-- slide 21 -->
     <div>
       <div>
-        <a target="_blank" href="examples\cog.html">COG example</a> - load Cloud
-        Optimized GeoTIFF from AWS bucket
+        <a
+          target="_blank"
+          href="https://geotiff.github.io/georaster-layer-for-leaflet-example/examples/load-cog-via-script-tag.html"
+          >COG example</a
+        >
+        - load Cloud Optimized GeoTIFF
       </div>
       <notes>add your own GeoTIFF and play around</notes>
     </div>
 
     <!-- slide 21 -->
     <div>
-      <div>
-        <a target="_blank" href="examples\cog.html">COG example</a> - load Cloud
-        Optimized GeoTIFF from AWS bucket
-      </div>
+      <div>Request headers<img src="images/range.png" /></div>
+      <br />
+      <div>Response headers<img src="images/content-range.png" /></div>
       <notes>add your own GeoTIFF and play around</notes>
     </div>
 
@@ -423,7 +446,7 @@
     <div class="layout" style="grid-template-rows: 15% 125%">
       <div>
         My use case:&nbsp;
-        <a target="_blank" href="https://mnforcast.org/">mnforcast.org</a>
+        <a target="_blank" href="https://bit.ly/3RSSeGh">mnforcast.org</a>
       </div>
       <img src="images/forcast.png" />
       <notes></notes>
@@ -440,7 +463,7 @@
             You want to speed up imagery/raster load times (by using
             <em>COG</em>s)
           </li>
-          <li>You want to imagery/raster analysis in JavaScript</li>
+          <li>You want client-side imagery/raster analysis</li>
         </ul>
       </div>
       <notes>Summary</notes>
@@ -449,7 +472,8 @@
     <!-- last slide -->
     <div>
       <div>Thank you!</div>
-      <div class="subtitle">Kris Johnson, NRRI/UMD - kristofj@d.umn.edu</div>
+      <div class="subtitle nowrap">Kris Johnson, NRRI/UMD</div>
+      <div class="subtitle">kristofj@d.umn.edu</div>
     </div>
   </body>
 </html>
