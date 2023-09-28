@@ -28,86 +28,43 @@
   <body class="dark">
     <!-- slide 1   -->
     <div class="layout" style="grid-template-rows: 75% 25%">
-      <div>GeoTIFFs in the browser</div>
-      <div class="subtitle">Kris Johnson, NRRI/UMD - GIS/LIS 2022</div>
+      <div>
+        Just another COG in the machine: all about Cloud Optimized Geotiffs
+      </div>
+      <div class="subtitle">Kris Johnson, NRRI - GIS/LIS 2023</div>
       <notes>Speakers notes go here.</notes>
     </div>
 
-    <div>
-      <div>
-        <a href="https://tinyurl.com/geo-tiff">https://tinyurl.com/geo-tiff</a>
-      </div>
-    </div>
     <!-- slide 2 -->
     <div>
       <div>
-        Outline:
+        Link to presentation slides
+        <a href="https://tinyurl.com/geo-tiff">https://tinyurl.com/geo-tiff</a>
+      </div>
+    </div>
+
+    <!-- slide 3 -->
+    <div>
+      <div>
+        Cloud Optimized GeoTIFF (COGs):
         <ul>
-          <li>What is <em>geotiff.js</em>?</li>
-          <li>Why use it?</li>
-          <li>How to use it?</li>
+          <li>What are they?</li>
+          <li>How do you use them?</li>
+          <li>Why use them?</li>
           <li>Examples</li>
           <li>My use case</li>
         </ul>
       </div>
       <notes>Speakers notes go here.</notes>
     </div>
-    <!-- slide 3 -->
-    <div>
-      <div>
-        <a href="https://geotiffjs.github.io/">geotiff.js</a>
-        parses TIFF files for visualization or analysis, written in JavaScript
-      </div>
-      <notes>Speakers notes go here.</notes>
-    </div>
-    <!-- slide 4 -->
-    <div>
-      <div>
-        Support for the GeoTIFF capabilities we expect from a desktop GIS:
-        <ul>
-          <li>various image compression methods</li>
-          <li>geographical information</li>
-          <ul>
-            <li>location</li>
-            <li>pixel values</li>
-          </ul>
-          <li>internal tiling</li>
-          <li>pixel or band interleaving</li>
-          <li>automatic transformation from several color spaces to RGB</li>
-        </ul>
-      </div>
-      <notes>Speakers notes go here.</notes>
-    </div>
-    <!-- slide 5 -->
-    <div class="layout" style="grid-template-rows: 10% 90%">
-      <div>From this</div>
-      <img src="images/tif-code.png" />
-      <notes>Speakers notes go here.</notes>
-    </div>
-    <!-- slide 6 -->
-    <div class="layout" style="grid-template-rows: 10% 90%">
-      <div>To this</div>
-      <!-- <iframe
-        title="geotiff.js example"
-        frameborder="0"
-        marginheight="0"
-        marginwidth="0"
-        width="600"
-        height="500"
-        scrolling="none"
-        src="https://geotiff.github.io/georaster-layer-for-leaflet-example/"
-      >
-    </iframe> -->
-      <img src="images/geotiff-example.png" />
 
-      <notes>Speakers notes go here.</notes>
-    </div>
-    <!-- slide 7 -->
+    <!-- slide 4 -->
     <div style="background-color: white">
       <img src="https://www.cogeo.org/images/logo/Cog-02.png" />
       <notes>Who's heard of COGs? Used them?</notes>
     </div>
-    <!-- slide 8 -->
+
+    <!-- slide 5 -->
     <div>
       <div>
         A
@@ -121,28 +78,97 @@
       </div>
       <notes>Speakers notes go here.</notes>
     </div>
+
+    <!-- slide 9 -->
+    <div>
+      <div>Let's break that definition down</div>
+      <notes>Speakers notes go here.</notes>
+    </div>
+
     <!-- slide 9 -->
     <div>
       <div>
-        <p>How?</p>
-        <p>
-          From the
-          <a target="_blank" href="https://www.cogeo.org/providers-guide.html"
-            >provider's guide</a
-          >:
-        </p>
+        <i>A regular GeoTIFF</i>
       </div>
       <notes>Speakers notes go here.</notes>
     </div>
+
+    <!-- slide 9 -->
+    <div>
+      <div>
+        <blockquote>
+          <p>
+            GeoTIFF is a public domain metadata standard that enables
+            georeferencing information to be embedded within an image (TIFF)
+            file.
+          </p>
+        </blockquote>
+        Essentially, a common <em>raster</em> data format
+      </div>
+      <notes>Speakers notes go here.</notes>
+    </div>
+
+    <!-- slide 10 -->
+    <div>
+      <div>
+        A web server <span class="small">capable of HTTP range requests</span>
+      </div>
+      <notes>Speakers notes go here.</notes>
+    </div>
+
+    <!-- slide 10 -->
+    <div class="layout" style="grid-template-rows: 25% 75%">
+      <div>object storage in the "cloud"</div>
+      <div>
+        <img
+          src="https://pbs.twimg.com/profile_images/1605297940242669568/q8-vPggS_400x400.jpg"
+        />
+        <img
+          src="https://miro.medium.com/v2/resize:fit:1400/1*b_al7C5p26tbZG4sy-CWqw.png"
+        />
+      </div>
+      <notes>Speakers notes go here.</notes>
+    </div>
+
+    <!-- slide 10 -->
+    <div class="layout" style="grid-template-rows: 50% 50%">
+      <div>files on a traditional web server</div>
+      <div>
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTSsTxOWnIURmTYeYZlY4uX15DZHu60kGjw6GxwoWtR1pHezts2F8lyweYsn_f3MHIDSQ&usqp=CAU"
+        />
+        <img
+          src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRWayd3GthNwzUYFenCgkBNpX3voSV11ziwzXwCiXn7YeLsGniI"
+        />
+      </div>
+      <notes>Speakers notes go here.</notes>
+    </div>
+
+    <!-- slide 10 -->
+    <div>
+      <div>
+        <span class="small">A web server</span> capable of HTTP range requests
+      </div>
+      <notes>Speakers notes go here.</notes>
+    </div>
+
     <!-- slide 10 -->
     <div class="layout" style="grid-template-rows: 25% 75%">
       <div>
-        A web server (eg. Amazon S3, Google Cloud Storage) capable of HTTP range
-        requests
+        <span class="small"></span>A web server </span>capable of HTTP range requests
       </div>
       <img src="images/range-requests.png" />
       <notes>Speakers notes go here.</notes>
     </div>
+
+    <!-- slide 9 -->
+    <div>
+      <div>
+        <i>A regular GeoTIFF</i>
+      </div>
+      <notes>Speakers notes go here.</notes>
+    </div>
+
     <!-- slide 11 -->
     <div>
       <div>

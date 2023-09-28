@@ -12,6 +12,46 @@ li {
   position: absolute;
   font-size: 60px;
 }
+
+/* highlighting text */
+.hi {
+  color: #ce92a7;
+}
+
+/* bigger text */
+.small {
+  font-size: 40%;
+}
+
+/* 
+  blockquotes 
+  src: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/blockquote
+*/
+blockquote {
+  margin: 0;
+}
+
+blockquote p {
+  padding: 15px;
+  background: #eee;
+  border-radius: 5px;
+  color: rgb(63, 63, 63);
+  font-size: 50%;
+}
+
+blockquote p::before {
+  content: "\201C";
+}
+
+blockquote p::after {
+  content: "\201D";
+}
+
+/* overrides */
+.layout div {
+  padding-bottom: 10px;
+}
+
 /* iframe {
   display: block;
   width: 100vh;
