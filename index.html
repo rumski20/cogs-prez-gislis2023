@@ -43,14 +43,14 @@
       </div>
     </div>
 
-    <!-- slide 3 -->
+    <!-- Outline -->
     <div>
       <div>
         Cloud Optimized GeoTIFF (COGs):
         <ul>
           <li>What are they?</li>
-          <li>How do you use them?</li>
-          <li>Why use them?</li>
+          <li>How can I make one for my kids?</li>
+          <li>How (and why) would I use one?</li>
           <li>Examples</li>
           <li>My use case</li>
         </ul>
@@ -64,6 +64,8 @@
       <notes>Who's heard of COGs? Used them?</notes>
     </div>
 
+    <!-- What are they? -->
+
     <!-- slide 5 -->
     <div>
       <div>
@@ -71,10 +73,10 @@
         <a target="_blank" href="https://www.cogeo.org/"
           >Cloud Optmized GeoTIFF</a
         >
-        is <em>a regular GeoTIFF file</em>, hosted on a HTTP file server, with
-        an internal organization that allows clients issuing ​HTTP
-        <em>GET range requests</em> to ask for just the parts of a file they
-        need.
+        is <em>a regular GeoTIFF file</em>, hosted on a
+        <em>HTTP file server</em>, with an <em>internal organization</em> that
+        allows clients issuing ​HTTP <em>GET range requests</em> to ask for just
+        the parts of a file they need.
       </div>
       <notes>Speakers notes go here.</notes>
     </div>
@@ -108,6 +110,66 @@
       <notes>Speakers notes go here.</notes>
     </div>
 
+    <!-- slide 9 -->
+    <div>
+      <div class="small">A <i>regular</i> GeoTIFF</div>
+      <div>
+        <blockquote><p>...with an internal organization...</p></blockquote>
+      </div>
+      <notes>Speakers notes go here.</notes>
+    </div>
+
+    <!-- slide 9 -->
+    <div>
+      <div>
+        Translation: <em>Tiling</em> and <em>Overviews</em><br />
+        <span class="small">and <em>compression</em></span>
+      </div>
+      <notes>Speakers notes go here.</notes>
+    </div>
+
+    <!-- slide 10 -->
+    <div class="layout" style="grid-template-rows: 25% 75%">
+      <div>Internal Tiling</div>
+      <img src="./images/internal-tiling.png" />
+      <notes>Speakers notes go here.</notes>
+    </div>
+
+    <!-- slide 10 -->
+    <div>
+      Tiles
+      <ul>
+        <li>Each tile is its own TIFF image</li>
+        <li>With its own metadata and header</li>
+        <li>Usually 256x256, but can be any size</li>
+      </ul>
+      <notes>Speakers notes go here.</notes>
+    </div>
+
+    <!-- slide 10 -->
+    <div class="layout" style="grid-template-rows: 15% 85%">
+      <div>Overviews</div>
+      <img src="./images/overviews.png" />
+      <notes>Speakers notes go here.</notes>
+    </div>
+
+    <!-- slide 10 -->
+    <div>
+      <div class="subtitle">Overviews</div>
+      <div>
+        Allow for smaller, lower resolution versions to be used in place of the
+        original
+      </div>
+      <notes>Speakers notes go here.</notes>
+    </div>
+
+    <!-- slide 10 -->
+    <div>
+      Compression: <br />
+      just allows for even faster streaming to clients
+      <notes>Speakers notes go here.</notes>
+    </div>
+
     <!-- slide 10 -->
     <div>
       <div>
@@ -118,7 +180,7 @@
 
     <!-- slide 10 -->
     <div class="layout" style="grid-template-rows: 25% 75%">
-      <div>object storage in the "cloud"</div>
+      <div>object storage in the ☁️</div>
       <div>
         <img
           src="https://pbs.twimg.com/profile_images/1605297940242669568/q8-vPggS_400x400.jpg"
@@ -153,19 +215,95 @@
     </div>
 
     <!-- slide 10 -->
-    <div class="layout" style="grid-template-rows: 25% 75%">
-      <div>
-        <span class="small"></span>A web server </span>capable of HTTP range requests
-      </div>
-      <img src="images/range-requests.png" />
+    <div>
+      Look for
+      <pre>Accept-Ranges: bytes</pre>
+      in the response header
       <notes>Speakers notes go here.</notes>
     </div>
 
-    <!-- slide 9 -->
+    <!-- slide 10 -->
+    <div class="layout" style="grid-template-rows: 25% 75%">
+      <div>Range requests (AKA&nbsp;<i>byte serving</i>)</div>
+      <img
+        style="background-color: white"
+        src="https://bunnyacademy.b-cdn.net/What-Are-HTTP-Range-Requests.png"
+      />
+      <notes>Speakers notes go here.</notes>
+    </div>
+
+    <!-- slide 10 -->
     <div>
+      <div class="small">Pulling it all together:</div>
       <div>
-        <i>A regular GeoTIFF</i>
+        Allows clients to request only the relevant portions of the image, and
+        not the whole file 😅
       </div>
+      <notes>Speakers notes go here.</notes>
+    </div>
+
+    <!-- How can I make one for my kids? -->
+
+    <!-- slide 10 -->
+    <div>
+      How can I make one?
+      <notes>Speakers notes go here.</notes>
+    </div>
+
+    <!-- slide 10 -->
+    <div>
+      <em>GDAL</em>
+      <div class="small">what else?</div>
+      <notes>Speakers notes go here.</notes>
+    </div>
+
+    <!-- slide 10 -->
+    <div>
+      <div class="subtitle">since version 3.1</div>
+      <pre>gdalwarp <em>-of COG</em> intput.tif outputCOG.tif</pre>
+      <pre>
+gdal_translate world.tif world_webmerc_cog.tif <em>-of COG</em> <br>-co TILING_SCHEME=GoogleMapsCompatible -co COMPRESS=JPEG</pre>
+      <a href="https://gdal.org/drivers/raster/cog.html"
+        >https://gdal.org/drivers/raster/cog.html</a
+      >
+      <notes>Speakers notes go here.</notes>
+    </div>
+
+    <!-- slide 10 -->
+    <div>
+      <div>Python🐍: rio-cogeo</div>
+      <pre>rio cogeo create input.tif outputCOG.tif</pre>
+      <a href="https://cogeotiff.github.io/rio-cogeo/"
+        >https://cogeotiff.github.io/rio-cogeo/</a
+      >
+      <notes>Speakers notes go here.</notes>
+    </div>
+
+    <!-- slide 10 -->
+    <div>
+      Then, load it onto a web server and you're ready to 🚢
+      <notes>Speakers notes go here.</notes>
+    </div>
+
+    <!-- slide 10 -->
+    <div>
+      How do you use them?
+      <notes>Speakers notes go here.</notes>
+    </div>
+
+    <!-- slide 10 -->
+    <div>
+      Anywhere you can use a regular GeoTIFF, actually
+      <notes>Speakers notes go here.</notes>
+    </div>
+
+    <!-- slide 10 -->
+    <div>
+      <ul>
+        <li>Desktop GIS</li>
+        <li>Web Maps</li>
+        <li>Data Sharing and Distribution</li>
+      </ul>
       <notes>Speakers notes go here.</notes>
     </div>
 
@@ -493,6 +631,27 @@
         </ul>
       </div>
       <notes>Summary</notes>
+    </div>
+
+    <div>
+      <ul>
+        image/content/resources:
+        <li>
+          <a
+            href="https://developers.planet.com/docs/planetschool/an-introduction-to-cloud-optimized-geotiffs-cogs-part-1-overview/"
+            >https://developers.planet.com/docs/planetschool/an-introduction-to-cloud-optimized-geotiffs-cogs-part-1-overview/</a
+          >
+        </li>
+        <li>
+          More ways to generate COGs:
+          <a href="https://www.cogeo.org/#implementations"
+            >https://www.cogeo.org/#implementations</a
+          >
+        </li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
     </div>
 
     <!-- last slide -->

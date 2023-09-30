@@ -52,6 +52,22 @@ blockquote p::after {
   padding-bottom: 10px;
 }
 
+pre {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 0.2em;
+  background: #edebe8;
+  color: #000;
+  font-weight: normal;
+  font-family: "Courier New", Courier, monospace;
+  border-radius: 6px;
+}
+
+pre em {
+  color: #000;
+  font-weight: bold;
+}
+
 /* iframe {
   display: block;
   width: 100vh;
