@@ -307,29 +307,50 @@ gdal_translate world.tif world_webmerc_cog.tif <em>-of COG</em> <br>-co TILING_S
       <notes>Speakers notes go here.</notes>
     </div>
 
-    <!-- slide 11 -->
-    <div>
-      <div>
-        <a
-          target="_blank"
-          href="https://github.com/GeoTIFF/georaster-layer-for-leaflet/blob/master/FAQs.md#how-do-i-convert-my-geotiff-into-a-cloud-optimized-geotiff"
-          >Convert regular GeoTIFF to COG</a
-        >
-      </div>
-      <pre><code class="language-shell">
-        gdal_translate example.tif cog.tif -co TILED=YES -co COMPRESS=DEFLATE
-      </code></pre>
-      <br />
-      <pre><code class="language-shell">
-        gdaladdo -r average cog.tif 2 4 8 16 32 
-    </code></pre>
-      <notes>internal tiling, external overviews</notes>
-    </div>
+    <!-- Why Use -->
     <!-- slide 12 -->
     <div>
-      <div>Why all the fuss?</div>
+      Why use a ⚙️?
       <notes></notes>
     </div>
+
+    <!-- slide 12 -->
+    <div>
+      <ul>
+        <li>Improved performance / Reduced cost</li>
+        <li>Scalability</li>
+        <li>Accessibility / Interoperability</li>
+        <li>Reduced data duplication</li>
+      </ul>
+      <notes></notes>
+    </div>
+
+    <!-- slide 12 -->
+    <div>
+      Improved performance / Reduced cost
+      <ul>
+        <li>efficient access</li>
+        <li>reduced bandwidth consumption</li>
+      </ul>
+      <notes>internal tiling and overviews</notes>
+    </div>
+
+    <!-- slide 12 -->
+    <div>
+      <span class="top-title">Scalability</span> <br />
+      <br />
+      Efficient streaming enables integration with cloud-based workflows
+      <ul>
+        <li><a href="https://geotrellis.io/">Geotrellis</a></li>
+        <li><a href="https://developers.maxar.com/">Maxar</a></li>
+        <li>
+          <a href="https://earthengine.google.com/">Google Earth Engine</a>
+        </li>
+        <li><a href="https://www.planet.com/explorer">Planet Explorer</a></li>
+      </ul>
+      <notes></notes>
+    </div>
+
     <!-- slide 13 -->
     <div>
       <div>
