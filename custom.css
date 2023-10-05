@@ -47,6 +47,11 @@ blockquote p::after {
   content: "\201D";
 }
 
+/* sub lists */
+ul > li > ul > li {
+  font-size: 75%;
+}
+
 /* overrides */
 .layout div {
   padding-bottom: 10px;
