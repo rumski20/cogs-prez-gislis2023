@@ -2,7 +2,9 @@
 
 This example will walk through the process of creating a Cloud Optimized Geotiff, loading it onto a web server, and rendering it on the web and in a desktop GIS.
 
-### 1. Create a cloud optimized geotiff using rio-cogeo
+[Download the data for this example from here](https://drive.google.com/file/d/1V2D-rZouJE3FseqN2W515aSHlaDDIqPG/view?usp=sharing)
+
+### 1. Create a cloud optimized geotiff using gdal
 
 a) inspect the data
 
