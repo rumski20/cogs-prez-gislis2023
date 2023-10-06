@@ -4,39 +4,36 @@ This example will walk through the process of creating a Cloud Optimized Geotiff
 
 ### 1. Create a cloud optimized geotiff using rio-cogeo
 
-Following along with the instructions here: <https://cogeotiff.github.io/rio-cogeo/Is_it_a_COG/>
-
-a. inspect the data
+a) inspect the data
 
 ```bash
-rio cogeo info duluth2011_3in_dt.tif
+gdalinfo examples\data\duluth2011_3in_dt.tif
 ```
 
 No internal tiling, so it's not a COG.
 
-b. create the COG
+b) create the COG
 
 ```bash
-rio cogeo create duluth2011_3in_dt.tif duluth2011_3in_dt_COG.tif
+gdal_translate examples\data\duluth2011_3in_dt.tif examples\data\duluth2011_3in_dt_COG.tif -of COG -co COMPRESS=JPEG
 ```
 
-c. confirm that it worked
+c) confirm that it worked
 
 ```bash
-rio cogeo info duluth2011_3in_dt_COG.tif
+gdalinfo examples\data\duluth2011_3in_dt_COG.tif
 ```
 
 Should see something like
 
 ```bash
 ...
-Tiled:      True
+LAYOUT=COG
 ...
 
-IFD
-Block 1
-Block 2
+Block=512x512
 ...
+Overviews: ...
 ```
 
 ### 2. Create web server with COG in tow
@@ -60,4 +57,12 @@ You should see your COG listed.
 
 ### 3. Load COG into a web map
 
-### 4. Load COG into a desktop GIS (QGIS or ArcGIS Pro)
+1. Copy the link to your COG
+2. Visit https://geotiffjs.github.io/cog-explorer
+3. Paste your link and voila!
+
+### 4. Load COG into a desktop GIS ( QGIS or ArcGIS Pro)
+
+- [How to load a COG into QGIS](https://www.cogeo.org/qgis-tutorial.html)
+
+- [How to load a COG into ArcGIS Pro](https://mapscaping.com/cloud-optimized-geotiff-in-arcgis-pro/)
